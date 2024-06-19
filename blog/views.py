@@ -29,20 +29,12 @@ class PostDetailView(DetailView):
     model = Post
 
 
-class PostCreateView(LoginRequiredMixin, CreateView):
-    model = Post
-    # fields = ['author', 'title', 'content','status', 'category', 'published_date']
-    form_class = PostForm
-    success_url = "/blog/post/"
-
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
+class PostListApiView(TemplateView):
+    template_name = "blog/post_list_api.html"
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    # fields = ['author', 'title', 'content','status', 'category', 'published_date']
     form_class = PostForm
     success_url = "/blog/post/"
 

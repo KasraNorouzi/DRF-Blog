@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "accounts.apps.AccountsConfig",
     "blog.apps.BlogConfig",
-    'rest_framework'
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -136,3 +136,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # use manager config
 AUTH_USER_MODEL = 'accounts.User'
+
+# restframework settings
+
+REST_FRAMEWORK = {'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.openapi.AutoSchema'}
