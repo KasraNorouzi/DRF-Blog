@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 
+from rest_framework.authentication import SessionAuthentication
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,8 +40,11 @@ INSTALLED_APPS = [
     "accounts.apps.AccountsConfig",
     "blog.apps.BlogConfig",
     'rest_framework',
+    'rest_framework.authtoken',
     'django_filters',
     'drf_yasg',
+    'rest_framework_simplejwt',
+
 ]
 
 MIDDLEWARE = [
@@ -135,4 +140,17 @@ AUTH_USER_MODEL = 'accounts.User'
 
 # restframework settings
 
-REST_FRAMEWORK = {'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.openapi.AutoSchema'}
+# REST_FRAMEWORK = {
+#     'DEFAULT_SCHEMA_CLASS': [
+#         'rest_framework.schemas.openapi.AutoSchema',
+#     ]
+# }
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ]
+}
